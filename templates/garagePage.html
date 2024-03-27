@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Page</title>
+    <style>
+        table {
+            margin-top: 50px;
+            border: 1px solid #0c0606;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            border-right: 0;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            background-color: #fdbfbf;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>Dear Garage Owner, Your Pending Queries are as follows: </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sex</th>
+                <th>Marital Status</th>
+                <th>Age</th>
+                <th>Vehicle Price</th>
+                <th>Deductible</th>
+                <th>Driver Rating</th>
+                <th>Address Change Claim</th>
+                <th>Number of Cars</th>
+                <th>Verify Correctness</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Sample Data Row (Replace with your actual data) -->
+           
+            <!-- Add more rows as needed -->
+            {% for n in restrictedQueryData %}
+            <tr>
+                <td>{{n.service_sex}}</td>
+                <td>{{n.service_maritalStatus}}</td>
+                <td>{{n.service_age}}</td>
+                <td>${{n.service_vehiclePrice}}</td>
+                <td>${{n.service_deductible}}</td>
+                <td>{{n.service_driverRating}}</td>
+                <td>{{n.service_addressChangeClaim}}</td>
+                <td>{{n.service_numberOfCars}}</td>
+                <td>
+                    <!-- Your HTML form -->
+                    <form id="myForm" method="post" action="{% url 'garageAfterInput' %}">
+                        {% csrf_token %}
+                        <!-- other form fields -->
+
+                        <!-- Hidden field for the serialized Python object -->
+                        <input type="hidden" name="object_email" id="pythonObjectField" value="{{n.service_username}}">
+                        <input type="hidden" name="object_age" id="pythonObjectField" value="{{n.service_age}}">
+                        <input type="hidden" name="object_price" id="pythonObjectField" value="{{n.service_vehiclePrice}}">
+                        <input type="hidden" name="object_garage_email" id="pythonObjectField" value="{{n.service_Garage_username}}">
+                        <input type="hidden" name="object_output" id="pythonObjectField" value="Correct">
+                        <button type="submit">Correct</button>
+                    </form>
+
+                    <form id="myForm" method="post" action="{% url 'garageAfterInput' %}">
+                        {% csrf_token %}
+                        <!-- other form fields -->
+
+                        <!-- Hidden field for the serialized Python object -->
+                        <input type="hidden" name="object_email" id="pythonObjectField" value="{{n.service_username}}">
+                        <input type="hidden" name="object_age" id="pythonObjectField" value="{{n.service_age}}">
+                        <input type="hidden" name="object_price" id="pythonObjectField" value="{{n.service_vehiclePrice}}">
+                        <input type="hidden" name="object_garage_email" id="pythonObjectField" value="{{n.service_Garage_username}}">
+                        <input type="hidden" name="object_output" id="pythonObjectField" value="Wrong">
+                        <button type="submit">Wrong</button>
+                    </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

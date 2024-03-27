@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Request</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <form action=" {% url 'process' %} " method="post">
+        {% csrf_token %}
+
+        <label for="vehiclePrice">Email:</label>
+        <input type="email" id="vehiclePrice" name="userEmail" required value="{{userEmail}}" readonly><br>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex">
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select><br>
+    
+        <label for="maritalStatus">Marital Status:</label>
+        <select id="maritalStatus" name="maritalStatus">
+          <option value="1">Single</option>
+          <option value="0">Married</option>
+        </select><br>
+    
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+    
+        <label for="vehiclePrice">Vehicle Price:</label>
+        <input type="number" id="vehiclePrice" name="vehiclePrice" required><br>
+    
+        <label for="deductible">Deductible:</label>
+        <input type="number" id="deductible" name="deductible" required><br>
+    
+        <label for="driverRating">Driver Rating:</label>
+        <input type="number" id="driverRating" name="driverRating" required><br>
+    
+        <label for="addressChangeClaim">Address Change Claim:</label>
+        <input type="number" id="addressChangeClaim" name="addressChangeClaim" required><br>
+    
+        <label for="numberOfCars">Number of Cars:</label>
+        <input type="number" id="numberOfCars" name="numberOfCars" required><br>
+
+        <label for="garageName">Garage Name:</label>
+        <select id="sex" name="garageName">
+          <option value="garage@gmail.com">garage@gmail.com</option>
+          <option value="garage1@gmail.com">garage1@gmail.com</option>
+          <option value="garage2@gmail.com">garage2@gmail.com</option>
+        </select><br>
+    
+        <input type="submit" value="Submit">
+      </form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration</title>
+    <style>
+        form{max-width:400px;margin:20px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+label{display:block;margin-bottom:8px;color:#333}
+select,input{width:100%;padding:8px;margin-bottom:16px;box-sizing:border-box;border:1px solid #ccc;border-radius:4px}
+input[type="submit"]{background-color:#4caf50;color:#fff;padding:10px 15px;border:none;border-radius:4px;cursor:pointer}
+input[type="submit"]:hover{background-color:#45a049}
+
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    
+    <form method="post" action="{% url 'afterOTP' %}">
+        {% csrf_token %}
+        <h2 style="color: #000000;">Please Enter the OTP sent on your email....</h2>
+        
+        <label for="otp">One Time Password(OTP):</label>
+        <input type="text" id="name" name="otpInput" required>
+
+        <input type="hidden" name="object_name" id="pythonObjectField" value="{{name}}">
+        <input type="hidden" name="object_gender" id="pythonObjectField" value="{{gender}}">
+        <input type="hidden" name="object_phone" id="pythonObjectField" value="{{phone}}">
+        <input type="hidden" name="object_email" id="pythonObjectField" value="{{email}}">
+        <input type="hidden" name="object_password" id="pythonObjectField" value="{{password}}">
+
+
+        <input type="hidden" name="object_otp" id="pythonObjectField" value="{{otp}}">
+
+        <button type="submit">Submit</button>
+      </form>
+</body>
+</html>
